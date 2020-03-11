@@ -39,6 +39,8 @@ void	ft_write_r(t_all *all, int index, char *data, int *j)
 
 void	ft_write_code_to_fd(t_all *all, char *temp)
 {
+	if (ft_atoi(temp) > REG_NUMBER)
+		ft_exit("invalid register number");
 	if (all->flag.p == 1)
 		ft_putstr_fd_wide('r', temp, 0);
 	else

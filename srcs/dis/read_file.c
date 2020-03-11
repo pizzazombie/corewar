@@ -28,7 +28,7 @@ int		file_len(char *filename)
 		if (r == 0)
 			return (len);
 	}
-	ft_exit("some problems with file len");
+	ft_exit("file doesn't exist");
 	return (0);
 }
 
@@ -41,10 +41,16 @@ void	*read_file(char *filename, int *size)
 	*size = file_len(filename);
 	buf = ft_memalloc(*size + 1);
 	fd = open(filename, O_RDONLY);
+	if (fd < 0)
+		ft_exit("error while readinf file");
 	r = read(fd, buf, *size);
 	close(fd);
-	if (r == *size)
+	if (r > MEM_SIZE)
+		ft_exit("invalid size of program");
+	else if (r == *size)
 		return (buf);
+	else
+		ft_exit("File length doesn't match to program size");
 	return (0);
 }
 
@@ -66,7 +72,7 @@ void	ft_read_name_comment(t_all *all)
 	r = read(all->fd, all->comment, 8);
 	r = read(all->fd, all->comment, COMMENT_LENGTH);
 	if (r < COMMENT_LENGTH)
-		ft_exit("invalid lenth of comment\n");
+		ft_exit("invalid lenth of comment");
 	ft_printf("r=%i\ncomment=%s\n", r, all->comment);
 	close(all->fd);
 }

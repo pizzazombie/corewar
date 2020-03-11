@@ -15,8 +15,12 @@
 char	*ft_s(t_all *all)
 {
 	char	*out;
+	char	*temp;
 
-	if (ft_strcmp(ft_strrchr(all->file_cor, '.'), ".cor"))
+	temp = ft_strrchr(all->file_cor, '.');
+	if (temp == NULL)
+		ft_exit("invalid file name");
+	if (ft_strcmp(temp, ".cor"))
 		ft_exit("invalid file format!");
 	out = ft_memalloc(ft_strlen(all->file_s) - 4 + 2 + 1);
 	ft_strncpy(out, all->file_s, ft_strlen(all->file_s) - 4);

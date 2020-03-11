@@ -24,7 +24,30 @@ void			ft_details(t_all *all)
 		ft_printf(".comment \"%s\"\n\n", all->magic->comment);
 	}
 }
+void	ft_null_test(t_all *all)
+{
+	int i;
 
+	i = 0;
+	while ((int)(all->magic->prog_name[i]) != 0)
+		i++;
+	while (i < PROG_NAME_LENGTH)
+	{
+		if ((int)(all->magic->prog_name[i]) != 0)
+			ft_exit("Invaid number of nulls after name");
+		i++;
+	}
+	i = 0;
+	while ((int)(all->magic->comment[i]) != 0)
+		i++;
+	while (i < COMMENT_LENGTH)
+	{
+		if ((int)(all->magic->comment[i]) != 0)
+			ft_exit("Invaid number of nulls after comment");
+		i++;
+	}
+	//printf("magic=%i\n", i_have_no_idea_how_it_works(all->magic->magic));
+}
 void			ft_process(t_all *all)
 {
 	int			size;
@@ -32,8 +55,10 @@ void			ft_process(t_all *all)
 
 	buf = read_file(all->file_cor, &size);
 	all->magic = (t_magic*)buf;
+	ft_null_test(all);
 	if (i_have_no_idea_how_it_works(all->magic->magic) != COREWAR_EXEC_MAGIC)
 		ft_exit("Invalid magic number");
+	all->magic->magic += 1000;
 	if (all->flag.p != 1 && (all->fd = open(all->file_s,
 		O_WRONLY | O_CREAT | O_TRUNC, 0777)) == -1)
 		ft_exit("Couldn't create .s file");
