@@ -24,7 +24,8 @@ void			ft_details(t_all *all)
 		ft_printf(".comment \"%s\"\n\n", all->magic->comment);
 	}
 }
-void	ft_null_test(t_all *all)
+
+void			ft_null_test(t_all *all)
 {
 	int i;
 
@@ -46,8 +47,8 @@ void	ft_null_test(t_all *all)
 			ft_exit("Invaid number of nulls after comment");
 		i++;
 	}
-	//printf("magic=%i\n", i_have_no_idea_how_it_works(all->magic->magic));
 }
+
 void			ft_process(t_all *all)
 {
 	int			size;
