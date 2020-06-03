@@ -6,7 +6,7 @@
 /*   By: dholiday <dholiday@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/10/04 11:33:27 by zaz               #+#    #+#             */
-/*   Updated: 2020/02/14 18:24:36 by dholiday         ###   ########.fr       */
+/*   Updated: 2020/03/16 09:50:41 by nhamill          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 
 # include <unistd.h>
 # include <fcntl.h>
-# include <stdio.h>
 # include "libft.h"
 
 # define ANSI_COLOR_RED		"\x1b[31m"
@@ -27,6 +26,21 @@
 # define ANSI_COLOR_MAGENTA "\x1b[35m"
 # define ANSI_COLOR_CYAN	"\x1b[36m"
 # define ANSI_COLOR_RESET   "\x1b[0m"
+
+# define ERR_NBR_NLL "Invaid number of nulls after name"
+# define ERR_NBR_CMT "Invaid number of nulls after comment"
+# define ERR_MGC_NBR "Invalid magic number"
+# define ERR_CRT_S "Couldn't create .s file"
+# define ERR_NBR_AGRS "Invalid number of args"
+# define ERR_FILE_EXIST "File doesn't exist"
+# define ERR_RD_FILE "Error while reading a file"
+# define ERR_SIZE "Invalid size of program"
+# define ERR_PROG_SIZE "File length doesn't match to program size"
+# define ERR_CMT_SIZE "Invalid lenth of comment"
+# define ERR_INC "Invalid instruction"
+# define ERR_FILE_NAME "Invalid file name"
+# define ERR_FILE_FORMAT "Invalid file format"
+# define ERR_REG_NUM "invalid register number"
 
 typedef struct				s_dis
 {

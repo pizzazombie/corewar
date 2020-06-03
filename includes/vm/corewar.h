@@ -6,7 +6,7 @@
 /*   By: nhamill <nhamill@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/07 14:03:09 by nhamill           #+#    #+#             */
-/*   Updated: 2020/03/07 16:38:30 by nhamill          ###   ########.fr       */
+/*   Updated: 2020/03/15 10:59:33 by nhamill          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 # include "inc_def.h"
 # include "prototype.h"
-# include "struct.h"
 
 extern t_op			g_op_tab[];
 

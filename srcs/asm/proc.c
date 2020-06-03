@@ -6,7 +6,7 @@
 /*   By: dholiday <dholiday@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/10/04 11:33:27 by zaz               #+#    #+#             */
-/*   Updated: 2020/03/10 20:01:11 by dholiday         ###   ########.fr       */
+/*   Updated: 2020/03/14 16:48:36 by dholiday         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	ft_keep_read(t_all *all, char *temp, int flag, int s)
 	while ((check = ft_strchr(new, '"')) == NULL)
 	{
 		if (get_next_line(all->fd, &buf) <= 0)
-			ft_error("some not wirkie or all is name!!!!!!!");
+			ft_error(ERR_FD, NULL);
 		temp2 = new;
 		new = ft_strjoin3(new, "\n", buf);
 		ft_strdel(&temp2);
@@ -31,10 +31,10 @@ void	ft_keep_read(t_all *all, char *temp, int flag, int s)
 	}
 	temp2 = ft_trim(check + 1, check + 1);
 	if (temp2[0] != '\0')
-		ft_error("not good name. think about it\n");
+		ft_error(ERR_BAD_NAME, NULL);
 	check[0] = '\0';
 	if (ft_strlen(new) > (size_t)s)
-		ft_error("403 too)0o big name\n");
+		ft_error(ERR_BIG_NAME, NULL);
 	ft_keep_read2(all, new, flag);
 	check[0] = '"';
 	ft_strdel(&temp2);
@@ -78,7 +78,7 @@ void	ft_check_len(t_line *new, int flag)
 
 	s = flag != 1 ? COMMENT_LENGTH : PROG_NAME_LENGTH;
 	if (ft_strlen(new->line) > (size_t)s)
-		ft_error("too long name or com!!!\n");
+		ft_error(ERR_LENGHT, NULL);
 }
 
 char	*ft_copy_name_com(char *f, char *s)

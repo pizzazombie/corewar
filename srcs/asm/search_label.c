@@ -6,7 +6,7 @@
 /*   By: dholiday <dholiday@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/10/04 11:33:27 by zaz               #+#    #+#             */
-/*   Updated: 2020/03/07 15:40:37 by nhamill          ###   ########.fr       */
+/*   Updated: 2020/03/14 16:48:56 by dholiday         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	ft_search_label(t_line *temp, char *arg, int size)
 
 	i = ft_search_label2(temp, arg);
 	if (i == -1)
-		ft_error("dont exist label metka");
+		ft_error(ERR_LBL_EXI, NULL);
 	new = i < 0 ? ft_negative(i, size) : ft_convert(i, 16, size);
 	temp1 = ft_add_null(new, size * 2);
 	temp->ans = ft_strcat(temp->ans, temp1);

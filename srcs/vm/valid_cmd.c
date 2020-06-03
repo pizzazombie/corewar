@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   valid_cmd.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nhamill <nhamill@42.fr>                    +#+  +:+       +#+        */
+/*   By: dholiday <dholiday@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/26 14:01:59 by nhamill           #+#    #+#             */
-/*   Updated: 2020/03/09 12:25:46 by nhamill          ###   ########.fr       */
+/*   Updated: 2020/03/14 15:44:53 by dholiday         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ static void			option(t_crwr *crwr, int ac, char **av)
 	}
 	if ((crwr->opt & 0x20 && crwr->opt & 0x02) || \
 		(crwr->opt & 0x04 && crwr->opt & 0x01) || ac == 1)
-		ft_error(USG, -1);
+		ft_usage();
 	if (crwr->opt & 0x80)
 		crwr->opt &= 0x80;
 	if (crwr->opt & 0x04 && crwr->opt & 0x02)
@@ -118,8 +118,10 @@ void				valid_command(int ac, char **av, t_crwr **crwr)
 	(*crwr)->nbr_cycles = -1;
 	(*crwr)->opt = 0;
 	option(*crwr, ac, av);
-	if ((n = count_players(ac, av)) > MAX_PLAYERS || !n)
+	if ((n = count_players(ac, av)) > MAX_PLAYERS)
 		ft_error(ERR_COUNT_PL, -1);
+	if (!n)
+		ft_usage();
 	(*crwr)->name = NULL;
 	(*crwr)->cursor = NULL;
 	(*crwr)->arena = NULL;

@@ -1,35 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ldi.c                                              :+:      :+:    :+:   */
+/*   add.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dholiday <dholiday@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/10/04 11:33:27 by zaz               #+#    #+#             */
-/*   Updated: 2020/03/07 15:48:18 by nhamill          ###   ########.fr       */
+/*   Updated: 2020/03/14 16:46:29 by dholiday         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 
-void	ldi(t_line *temp)
+void	add(t_line *temp)
 {
-	char	*new;
+	char *new;
 
 	if (temp->line[3] == ' ' || temp->line[3] == '\t')
 		new = ft_afterspace(temp->line + 3);
 	else
-		ft_error("error with ldi : ldi command need space\n");
+		ft_error(ERR, ERR_ADD);
 	temp->arg = ft_strsplit_wide(new, SEPARATOR_CHAR);
-	if (ft_size_mass(temp->arg) != 3)
-		ft_error("error with number of arg : ldi command\n");
+	if (ft_size_mass(temp->arg) != 3 || ft_h_m(new, SEPARATOR_CHAR) != 2)
+		ft_error(ERR_ARG, ERR_ADD);
 	ft_trim_mass_arg(temp->arg);
-	temp->cod += ft_check_trio(temp->arg[0], 1, temp, IND_SIZE);
-	ft_check_double(temp->arg[1], 2, temp);
+	ft_check_reg(temp->arg[0]);
+	ft_check_reg(temp->arg[1]);
 	ft_check_reg(temp->arg[2]);
-	temp->cod += 4;
-	temp->size += 1 + 1 + 1;
-	temp->dir = IND_SIZE;
-	temp->op = 10;
+	temp->size = 1 + 1 + 1 + 1 + 1;
+	temp->op = 4;
+	temp->cod = 84;
 	temp->flag = 1;
 }

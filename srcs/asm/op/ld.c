@@ -6,7 +6,7 @@
 /*   By: dholiday <dholiday@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/10/04 11:33:27 by zaz               #+#    #+#             */
-/*   Updated: 2020/03/07 19:37:02 by nhamill          ###   ########.fr       */
+/*   Updated: 2020/03/14 16:46:23 by dholiday         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,13 @@ void	ld(t_line *temp)
 		temp->arg = ft_strsplit_wide(new, SEPARATOR_CHAR);
 		if (ft_size_mass(temp->arg) != 2 ||
 			ft_h_m(new, SEPARATOR_CHAR) != 1)
-			ft_error("error with number of arg : ld command\n");
+			ft_error(ERR_ARG, ERR_LD);
 		ft_trim_mass_arg(temp->arg);
 		ft_ld_arg1(temp, temp->arg[0]);
 		ft_check_reg(temp->arg[1]);
 	}
 	else
-		ft_error("some not work with ld command\n");
+		ft_error(ERR, ERR_LD);
 	temp->op = 2;
 	temp->flag = 1;
 }
@@ -65,7 +65,7 @@ void	ft_check_ld_number(char *arg)
 	if (arg[0] == '-' || arg[0] == '+')
 		i = 1;
 	if (ft_str_is_digit(arg + i) == 0)
-		ft_error("нас не проведешь, some in number : ld command\n");
+		ft_error(ERR_LD_DIG, NULL);
 }
 
 void	ft_check_ls_label(char *arg)
@@ -78,7 +78,7 @@ void	ft_check_ls_label(char *arg)
 	while (i < len)
 	{
 		if (ft_strchr(LABEL_CHARS, arg[i]) == NULL)
-			ft_error("ты написать дичь в метке : ld command\n");
+			ft_error(ERR_LD_LBL, NULL);
 		i++;
 	}
 }
@@ -88,13 +88,13 @@ void	ft_check_reg(char *arg)
 	long long int i;
 
 	if (arg[0] != 'r')
-		ft_error("where are регистр : ld command\n");
+		ft_error(ERR_LD_NO_REG, NULL);
 	else
 	{
 		if (ft_str_is_digit(arg + 1) == 0)
-			ft_error("BAD регистр : ld command\n");
+			ft_error(ERR_LD_REG, NULL);
 		i = ft_atoi(arg + 1);
 		if (i < 0 || i > 99)
-			ft_error("BAD NuMbEr регистр : ld command\n");
+			ft_error(ERR_LD_BAD_REG, NULL);
 	}
 }

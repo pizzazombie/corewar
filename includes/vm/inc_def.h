@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   inc_def.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nhamill <nhamill@42.fr>                    +#+  +:+       +#+        */
+/*   By: dholiday <dholiday@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/07 17:07:49 by nhamill           #+#    #+#             */
-/*   Updated: 2020/03/07 17:09:13 by nhamill          ###   ########.fr       */
+/*   Updated: 2020/03/15 10:59:58 by nhamill          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 # include "op.h"
 # include "libft.h"
-# include <stdio.h>
 # include <unistd.h>
 # include <stdlib.h>
 # include <fcntl.h>
@@ -33,7 +32,16 @@
 # define OPT_B "-b"
 # define OPT_F "-f"
 
-# define USG "Usage"
+# define USG0 "Usage: corewar [-d N] [-s | -b N | -f] [-v] [-a] [-n N] "
+# define USG1 "<champion.cor> <...>\n	"
+# define USG2 "-a	: Prints output from 'aff' (Default is to hide it)"
+# define USG3 "**** TEXT OUTPUT MODE ******************************************"
+# define USG4 "	-d N	: Dumps memory after N cycles then exits"
+# define USG5 "	-f	: Flow of debug"
+# define USG6 "	-b N	: Debug mode from N cycles"
+# define USG7 "	-s	: Debug 'step-by-step' mode"
+# define USG8 "**** NCURSES OUTPUT MODE ***************************************"
+# define USG9 "	-v	: Ncurses output mode"
 # define NON_V "Too small window of terminal. Sorry!\nRun non-visual mode:\n\n"
 # define MSG_INTRO "Introducing contestants...\n"
 

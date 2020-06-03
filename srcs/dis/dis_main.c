@@ -35,7 +35,7 @@ void			ft_null_test(t_all *all)
 	while (i < PROG_NAME_LENGTH)
 	{
 		if ((int)(all->magic->prog_name[i]) != 0)
-			ft_exit("Invaid number of nulls after name");
+			ft_exit(ERR_NBR_NLL);
 		i++;
 	}
 	i = 0;
@@ -44,7 +44,7 @@ void			ft_null_test(t_all *all)
 	while (i < COMMENT_LENGTH)
 	{
 		if ((int)(all->magic->comment[i]) != 0)
-			ft_exit("Invaid number of nulls after comment");
+			ft_exit(ERR_NBR_CMT);
 		i++;
 	}
 }
@@ -58,11 +58,10 @@ void			ft_process(t_all *all)
 	all->magic = (t_magic*)buf;
 	ft_null_test(all);
 	if (i_have_no_idea_how_it_works(all->magic->magic) != COREWAR_EXEC_MAGIC)
-		ft_exit("Invalid magic number");
-	all->magic->magic += 1000;
+		ft_exit(ERR_MGC_NBR);
 	if (all->flag.p != 1 && (all->fd = open(all->file_s,
 		O_WRONLY | O_CREAT | O_TRUNC, 0777)) == -1)
-		ft_exit("Couldn't create .s file");
+		ft_exit(ERR_CRT_S);
 	ft_details(all);
 	ft_write_name_comment(all);
 	ft_cmp_inc(all, buf + sizeof(t_magic),
@@ -93,10 +92,10 @@ int				main(int ac, char **av)
 		else if (ft_strcmp(av[1], "-P") == 0)
 			all.flag.p = 1;
 		else
-			ft_exit("invalid number of args!");
+			ft_exit(ERR_NBR_AGRS);
 	}
 	else if (ac > 3)
-		ft_exit("invalid number of args!");
+		ft_exit(ERR_NBR_AGRS);
 	all.file_s = ft_s(&all);
 	ft_process(&all);
 	ft_free_all(&all);

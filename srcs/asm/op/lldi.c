@@ -1,48 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   st.c                                               :+:      :+:    :+:   */
+/*   lldi.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dholiday <dholiday@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/10/04 11:33:27 by zaz               #+#    #+#             */
-/*   Updated: 2020/03/07 15:49:10 by nhamill          ###   ########.fr       */
+/*   Updated: 2020/03/14 16:48:28 by dholiday         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 
-void	st(t_line *temp)
+void	lldi(t_line *temp)
 {
 	char	*new;
 
-	if (temp->line[2] == ' ' || temp->line[2] == '\t')
-		new = ft_afterspace(temp->line + 2);
+	if (temp->line[4] == ' ' || temp->line[4] == '\t')
+		new = ft_afterspace(temp->line + 4);
 	else
-		ft_error("error with st... : st command\n");
+		ft_error(ERR, ERR_LLDI);
 	temp->arg = ft_strsplit_wide(new, SEPARATOR_CHAR);
-	if (ft_size_mass(temp->arg) != 2 || ft_h_m(new, SEPARATOR_CHAR) != 1)
-		ft_error("error with number of arg : ld command\n");
+	if (ft_size_mass(temp->arg) != 3 || ft_h_m(new, SEPARATOR_CHAR) != 2)
+		ft_error(ERR_ARG, ERR_LLDI);
 	ft_trim_mass_arg(temp->arg);
-	ft_check_reg(temp->arg[0]);
-	ft_st_arg2(temp, temp->arg[1]);
-	temp->op = 3;
+	temp->cod += ft_check_trio(temp->arg[0], 1, temp, IND_SIZE);
+	ft_check_double(temp->arg[1], 2, temp);
+	ft_check_reg(temp->arg[2]);
+	temp->cod += 4;
+	temp->size += 1 + 1 + 1;
+	temp->op = 14;
+	temp->dir = IND_SIZE;
 	temp->flag = 1;
-}
-
-void	ft_st_arg2(t_line *temp, char *arg)
-{
-	if (arg[0] == LABEL_CHAR)
-		ft_check_ls_label(arg + 1);
-	else if (arg[0] == 'r')
-	{
-		ft_check_reg(arg);
-		temp->size = 1 + 1 + 1 + 1;
-		temp->cod = 80;
-		return ;
-	}
-	else
-		ft_check_ld_number(arg);
-	temp->size = 1 + 1 + 1 + IND_SIZE;
-	temp->cod = 112;
 }

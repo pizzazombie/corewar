@@ -6,7 +6,7 @@
 /*   By: dholiday <dholiday@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/10/04 11:33:27 by zaz               #+#    #+#             */
-/*   Updated: 2020/03/07 15:39:01 by nhamill          ###   ########.fr       */
+/*   Updated: 2020/03/14 16:45:00 by dholiday         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	ft_valid_label_chars(char *str)
 		if (ft_strchr(LABEL_CHARS, str[i]) == NULL && str[i] != LABEL_CHAR)
 		{
 			ft_strdel(&chars);
-			ft_error("is invalid label char!\n");
+			ft_error(ERR_LBL_CHAR, NULL);
 		}
 		i++;
 	}

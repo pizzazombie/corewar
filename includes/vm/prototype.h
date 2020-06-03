@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prototype.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nhamill <nhamill@42.fr>                    +#+  +:+       +#+        */
+/*   By: dholiday <dholiday@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/07 17:09:26 by nhamill           #+#    #+#             */
-/*   Updated: 2020/03/07 17:14:17 by nhamill          ###   ########.fr       */
+/*   Updated: 2020/03/16 09:51:36 by nhamill          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include "struct.h"
 
 int					ft_error(char *msg, int err);
+int					ft_usage(void);
 
 void				valid_command(int ac, char **av, t_crwr **crwr);
 void				fix_created_players(int ac, char **av, t_players *players, \
@@ -75,31 +76,29 @@ void				visu_update(t_crwr *crwr);
 void				get_visu_windows(t_arena *arena, t_cursor *cursor, \
 																t_visu *visu);
 
-void				debug(t_crwr *crwr, t_cursor *temp, unsigned num);
-void				debug_action(t_cursor *temp, unsigned num, t_debug *deb);
-void				debug10(t_cursor *temp, t_debug *deb);
-int					debug10_num1(t_cursor *temp, t_debug *deb, int num);
-int					debug10_num2(t_cursor *temp, t_debug *deb, int num, \
-																	int num1);
-void				debug_567(t_cursor *temp, t_debug *deb);
-int					debug_80_40(t_cursor *temp, char *s, t_debug *deb);
-int					debug_20_10(t_cursor *temp, t_debug *deb);
-int					debug_idx_mod(t_cursor *temp, t_debug *deb);
-void				debug_reg(t_cursor *temp, char c, t_debug *deb);
-int					debug_80_40_pc(t_cursor *temp, t_debug *deb);
-void				debug_9_13(t_cursor *temp, t_debug *deb);
-void				debug_1(t_cursor *temp, t_debug *deb);
-void				debug_2(t_cursor *temp, t_debug *deb);
-void				debug_12(t_cursor *temp, t_debug *deb);
-void				debug_8(t_cursor *temp, t_debug *deb);
-void				debug_general_info(t_arena *arena, t_cursor *temp, \
-																unsigned num);
-void				debug_arg(unsigned char arg, unsigned pc, unsigned num);
-void				debug_arg2(unsigned char code, unsigned num, unsigned *pc);
-void				debug_arg_value(unsigned char arg, unsigned pc, \
-												unsigned num, t_arena *arena);
-void				debug_arg_value2(unsigned char code, unsigned num, \
-												unsigned *pc, t_arena *arena);
-void				debug_11_14_15(t_cursor *temp, unsigned num, t_debug *deb);
+void				debug(t_crwr *crwr, t_cursor *temp);
+int					get_arg(unsigned char *field, t_cursor *temp, \
+											unsigned *pc, unsigned char arg);
+void				get_mod(int num, char mod);
+void				debug_live(unsigned char *field, t_cursor *temp, \
+												t_name *name, unsigned pc);
+void				debug_ld(unsigned char *field, t_cursor *temp, \
+												unsigned pc, unsigned char arg);
+void				debug_st(unsigned char *field, t_cursor *temp, \
+												unsigned pc, unsigned char arg);
+void				debug_add_sub(unsigned char *field, t_cursor *temp, \
+																unsigned pc);
+void				debug_and_or_xor(unsigned char *field, t_cursor *temp, \
+												unsigned pc, unsigned char arg);
+void				debug_zjmp(unsigned char *field, t_cursor *temp, \
+																unsigned pc);
+void				debug_ldi(unsigned char *field, t_cursor *temp, \
+												unsigned pc, unsigned char arg);
+void				debug_sti(unsigned char *field, t_cursor *temp, \
+												unsigned pc, unsigned char arg);
+void				debug_fork(unsigned char *field, t_cursor *temp, \
+																unsigned pc);
+void				debug_aff(unsigned char *field, t_cursor *temp, \
+																unsigned pc);
 
 #endif

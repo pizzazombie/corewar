@@ -6,7 +6,7 @@
 /*   By: dholiday <dholiday@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/10/04 11:33:27 by zaz               #+#    #+#             */
-/*   Updated: 2020/02/25 17:54:07 by dholiday         ###   ########.fr       */
+/*   Updated: 2020/03/14 16:44:56 by dholiday         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,11 @@ void	ft_look_at_list(t_all *all)
 
 	temp = all->inc_list;
 	if (temp == NULL)
-		ft_error("where inSTRUction?\n");
+		ft_error(ERR_INC, NULL);
 	else if (all->name == NULL)
-		ft_error("where NaMe?\n");
+		ft_error(ERR_NAME, NULL);
 	else if (all->comment == NULL)
-		ft_error("where cOmMeNt?\n");
+		ft_error(ERR_COMMENT, NULL);
 	while (temp != NULL)
 	{
 		if (temp->line != NULL)
@@ -45,5 +45,5 @@ void	ft_check_inc(t_all *all, t_line *temp)
 		}
 		i++;
 	}
-	ft_error("operation not exist!!!!");
+	ft_error(ERR_INC_EXIST, ERR_INC_EXIST_);
 }

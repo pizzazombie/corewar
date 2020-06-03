@@ -28,7 +28,7 @@ int		file_len(char *filename)
 		if (r == 0)
 			return (len);
 	}
-	ft_exit("file doesn't exist");
+	ft_exit(ERR_FILE_EXIST);
 	return (0);
 }
 
@@ -42,15 +42,15 @@ void	*read_file(char *filename, int *size)
 	buf = ft_memalloc(*size + 1);
 	fd = open(filename, O_RDONLY);
 	if (fd < 0)
-		ft_exit("error while readinf file");
+		ft_exit(ERR_RD_FILE);
 	r = read(fd, buf, *size);
 	close(fd);
 	if (r > MEM_SIZE)
-		ft_exit("invalid size of program");
+		ft_exit(ERR_SIZE);
 	else if (r == *size)
 		return (buf);
 	else
-		ft_exit("File length doesn't match to program size");
+		ft_exit(ERR_PROG_SIZE);
 	return (0);
 }
 
@@ -65,14 +65,14 @@ void	ft_read_name_comment(t_all *all)
 	buf[r] = '\0';
 	ft_bzero((void*)buf, COMMENT_LENGTH + 1);
 	if ((r = read(all->fd, buf, PROG_NAME_LENGTH)) < 0)
-		ft_exit("error while readinf file");
+		ft_exit(ERR_RD_FILE);
 	all->name = ft_strdup(buf);
 	ft_printf("r=%i\nname=%s\n", r, all->name);
 	all->comment = ft_strnew((COMMENT_LENGTH + 1));
 	r = read(all->fd, all->comment, 8);
 	r = read(all->fd, all->comment, COMMENT_LENGTH);
 	if (r < COMMENT_LENGTH)
-		ft_exit("invalid lenth of comment");
+		ft_exit(ERR_CMT_SIZE);
 	ft_printf("r=%i\ncomment=%s\n", r, all->comment);
 	close(all->fd);
 }
@@ -109,6 +109,6 @@ void	ft_cmp_inc(t_all *all, char *str, int size)
 			j++;
 		}
 		if ((unsigned long)j >= (sizeof(g_optab) / sizeof(t_op)) - 1)
-			ft_exit("invalid instruction");
+			ft_exit(ERR_INC);
 	}
 }

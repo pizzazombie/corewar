@@ -6,7 +6,7 @@
 /*   By: nhamill <nhamill@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 14:17:00 by nhamill           #+#    #+#             */
-/*   Updated: 2020/03/07 13:27:09 by nhamill          ###   ########.fr       */
+/*   Updated: 2020/03/14 17:09:41 by nhamill          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,11 @@ static void				draw_usage(unsigned char size)
 	mvprintw(57, size * 3 + 35, "start/stop");
 	mvprintw(60, size * 3 + 16, "d");
 	mvprintw(60, size * 3 + 36, "next step");
-	mvprintw(59, size * 3 + 16, "a");
+	mvprintw(59, size * 3 + 16, "s");
 	mvprintw(59, size * 3 + 30, "previous cursor");
 	mvprintw(58, size * 3 + 16, "w");
 	mvprintw(58, size * 3 + 34, "next cursor");
-	mvprintw(61, size * 3 + 16, "s");
+	mvprintw(61, size * 3 + 16, "a");
 	mvprintw(61, size * 3 + 26, "next part of memory");
 	refresh();
 }

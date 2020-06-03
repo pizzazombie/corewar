@@ -6,7 +6,7 @@
 /*   By: dholiday <dholiday@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/10/04 11:33:27 by zaz               #+#    #+#             */
-/*   Updated: 2020/03/07 15:38:07 by nhamill          ###   ########.fr       */
+/*   Updated: 2020/03/14 16:48:48 by dholiday         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,12 +47,12 @@ void	ft_proc_name_com(t_all *all, char *line, int flag, int i)
 	int		s;
 
 	if (flag == 1 && all->name != NULL)
-		ft_error("double bouble name\n");
+		ft_error(ERR_DBL_NAME, NULL);
 	else if (flag == 5 && all->comment != NULL)
-		ft_error("double commentrui\n");
+		ft_error(ERR_DBL_CMT, NULL);
 	new = ft_afterspace(line + i);
 	if (new == NULL || new[0] != '"')
-		ft_error("401no name 0r comment\n");
+		ft_error(ERR_NO_NAME_CMT, NULL);
 	else
 	{
 		s = flag != 1 ? COMMENT_LENGTH : PROG_NAME_LENGTH;
@@ -72,7 +72,7 @@ void	ft_proc_name_com2(t_all *all, int flag, char *new, int s)
 		if ((temp2 = ft_afterspace(temp + 1)) != NULL)
 		{
 			if (temp2[0] != COMMENT_CHAR && temp2[0] != ALT_COMMENT_CHAR)
-				ft_error("401wroong name 0r comment\n");
+				ft_error(ERR_CMT, NULL);
 		}
 		if (flag == 1)
 		{

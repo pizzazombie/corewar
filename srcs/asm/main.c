@@ -6,7 +6,7 @@
 /*   By: dholiday <dholiday@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/10/04 11:33:27 by zaz               #+#    #+#             */
-/*   Updated: 2020/03/10 19:59:27 by dholiday         ###   ########.fr       */
+/*   Updated: 2020/03/15 14:51:41 by nhamill          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,11 @@ int			main(int argc, char **argv)
 		ft_clean_all(&all);
 	}
 	else
+	{
+		ft_putstr(ANSI_COLOR_YELLOW"usage : ./asm player.s\n"ANSI_COLOR_RESET);
+		ft_putstr("(if you send few players, only last will be proceeded)\n");
 		ft_clean_all(&all);
+	}
 	return (0);
 }
 
@@ -35,13 +39,13 @@ void		ft_read_file(char *file, t_all *all)
 {
 	char	*line;
 	char	*check;
-	int 	i;
+	int		i;
 
 	all->fd = open(file, O_RDONLY);
 	all->file = file;
 	check = NULL;
 	if (all->fd == -1 || read(all->fd, check, 0) < 0)
-		ft_error("no file");
+		ft_error(ERR_FILE, NULL);
 	while ((i = get_next_line(all->fd, &line)) > 0)
 	{
 		ft_process(line, all);
@@ -49,7 +53,7 @@ void		ft_read_file(char *file, t_all *all)
 	}
 	if (i < 0)
 	{
-		printf("goodbye");
+		ft_putstr("goodbye");
 		exit(1);
 	}
 	ft_strdel(&line);
@@ -87,8 +91,12 @@ t_line		*ft_create(char *line)
 	return (new);
 }
 
-void		ft_error(char *line)
+void		ft_error(char *line, char *add)
 {
-	ft_printf(ANSI_COLOR_RED "%s" ANSI_COLOR_RESET "\n", line);
+	ft_printf(ANSI_COLOR_RED "%s" ANSI_COLOR_RESET, line);
+	if (add != NULL)
+		ft_printf(ANSI_COLOR_RED "%s" ANSI_COLOR_RESET "\n", add);
+	else
+		ft_putchar('\n');
 	exit(-1);
 }

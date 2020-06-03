@@ -6,14 +6,14 @@
 #    By: dholiday <dholiday@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/02 17:03:41 by tguillem          #+#    #+#              #
-#    Updated: 2020/03/07 17:29:09 by nhamill          ###   ########.fr        #
+#    Updated: 2020/03/14 16:46:58 by nhamill          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-LIBFT = libft.a
+NAME = libft.a
 
-CFLAGS = -Wall -Wextra -Werror -I.
 CC = gcc
+FLAGS = -Wall -Wextra -Werror
 SRC = ft_sum_w.c ft_list_push_back.c ft_bzero.c \
 	ft_isascii.c ft_list_size.c \
 	ft_isalpha.c ft_list_last.c \
@@ -58,16 +58,20 @@ SRC = ft_sum_w.c ft_list_push_back.c ft_bzero.c \
 	type_f.c wide_dioux.c wide_p.c wide_s.c ft_splitwhitespaces.c \
 	ft_clean_mass.c 
 
-OBJ = $(SRC:%.c=%.o)
+OBJ = $(SRC:.c=.o)
 
-NAME = $(LIBFT)
+INC = libft.h
+
+INCS = -I .
 
 all: $(NAME)
 
-$(OBJ) : libft.h
-
-$(LIBFT) : $(OBJ) libft.h
+$(NAME): $(OBJ)
 	ar rc $(NAME) $(OBJ)
+	ranlib $(NAME)
+
+%.o: %.c $(INC)
+	$(CC) $(FLAGS) $(INCS) -c $< -o $@
 
 clean:
 	@rm -f $(OBJ) 

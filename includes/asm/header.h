@@ -6,7 +6,7 @@
 /*   By: dholiday <dholiday@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/10/04 11:33:27 by zaz               #+#    #+#             */
-/*   Updated: 2020/03/07 15:38:43 by nhamill          ###   ########.fr       */
+/*   Updated: 2020/03/16 09:48:58 by nhamill          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 # include "op.h"
 # include <unistd.h>
 # include <fcntl.h>
-# include <stdio.h>
 # include "libft.h"
 
 # define ANSI_COLOR_RED	 "\x1b[31m"
@@ -24,8 +23,52 @@
 # define ANSI_COLOR_YELLOW  "\x1b[33m"
 # define ANSI_COLOR_BLUE	"\x1b[34m"
 # define ANSI_COLOR_MAGENTA "\x1b[35m"
-
 # define ANSI_COLOR_RESET   "\x1b[0m"
+
+# define ERR_ARG "error with number of arg : "
+# define ERR "error with "
+
+# define ERR_ADD "ADD command"
+# define ERR_AFF "AFF command"
+# define ERR_AND "AND command"
+# define ERR_FORK "FORk command"
+# define ERR_FORK_ "lFORk command"
+# define ERR_LD "ld command"
+# define ERR_LDI "ldi command"
+# define ERR_LV "LIVE command"
+# define ERR_LLD "lld command"
+# define ERR_LLDI "lldi command"
+# define ERR_OR "OR command"
+# define ERR_ST "st command"
+# define ERR_ST_ "sti command"
+# define ERR_SUB "sub command"
+# define ERR_XOR "xOR command"
+# define ERR_JMP "ZJMP command"
+
+# define ERR_LBL_CHAR "Invalid label char"
+
+# define ERR_LD_DIG "sould be a digit in arg"
+# define ERR_LD_LBL "invalid label name in arg"
+# define ERR_LD_NO_REG "sould be a register in arg"
+# define ERR_LD_REG "sould be a digit after 'r' for register in arg"
+# define ERR_LD_BAD_REG "Bad register number in arg"
+
+# define ERR_INC "no instruction"
+# define ERR_NAME "no name"
+# define ERR_COMMENT "no comment"
+# define ERR_INC_EXIST "operation doesn't exist, like your girlfriend hahaha "
+# define ERR_INC_EXIST_ ":)\ndon't be offended, it's a joke. honestly!"
+# define ERR_FILE "no file"
+
+# define ERR_FD "Can't read file"
+# define ERR_BAD_NAME "Bad name"
+# define ERR_BIG_NAME "Too big name"
+# define ERR_LENGHT "Invalid lenght of name or comment"
+# define ERR_DBL_NAME "double name"
+# define ERR_DBL_CMT "double comment"
+# define ERR_NO_NAME_CMT "no name or comment"
+# define ERR_CMT "wrong name Or comment"
+# define ERR_LBL_EXI "label doesn't exist"
 
 typedef struct		s_line
 {
@@ -62,7 +105,7 @@ void				ft_record_func(t_all *all);
 void				ft_read_file(char *file, t_all *all);
 void				ft_process(char *line, t_all *all);
 t_line				*ft_create(char *line);
-void				ft_error(char *line);
+void				ft_error(char *line, char *add);
 void				ft_proc_name_com(t_all *all, char *line, int flag, int i);
 void				ft_proc_name_com2(t_all *all, int flag, char *new, int s);
 void				ft_keep_read(t_all *all, char *temp, int flag, int s);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cycle.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nhamill <nhamill@42.fr>                    +#+  +:+       +#+        */
+/*   By: dholiday <dholiday@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 14:28:59 by nhamill           #+#    #+#             */
-/*   Updated: 2020/03/07 10:53:37 by nhamill          ###   ########.fr       */
+/*   Updated: 2020/03/15 11:40:59 by nhamill          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,9 +106,8 @@ void			cycle(t_crwr *crwr)
 		{
 			if (correct((unsigned char *)crwr->arena->field, temp))
 			{
-				(crwr->opt & 0x07 ? debug(crwr, temp, temp->nc) : NULL);
+				(crwr->opt & 0x07 ? debug(crwr, temp) : NULL);
 				g_op_tab[temp->nc].func(crwr, temp);
-				(crwr->opt & 0x07 ? debug(crwr, temp, temp->nc) : NULL);
 			}
 			if (temp->nc == 8 && temp->id & 0x80000000)
 				temp->step = 0;

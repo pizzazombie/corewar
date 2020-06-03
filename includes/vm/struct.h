@@ -6,7 +6,7 @@
 /*   By: nhamill <nhamill@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/07 17:10:58 by nhamill           #+#    #+#             */
-/*   Updated: 2020/03/07 17:12:15 by nhamill          ###   ########.fr       */
+/*   Updated: 2020/03/15 12:38:57 by nhamill          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,15 +87,5 @@ typedef struct		s_op	{
 	char			dir_is_four;
 	void			(*func)(t_crwr *crwr, t_cursor *temp);
 }					t_op;
-
-typedef struct		s_debug	{
-	int				num;
-	int				num1;
-	int				num2;
-	unsigned		pc;
-	unsigned char	arg;
-	unsigned char	reg;
-	unsigned char	*field;
-}					t_debug;
 
 #endif
